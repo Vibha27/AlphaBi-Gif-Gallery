@@ -17,12 +17,9 @@ function Items({ currentItems }) {
   );
 }
 
-export const GifGallery = ({ galleryList }) => {
-  // We start with an empty list of items.
+export const GifGallery = ({ galleryList, totalCount }) => {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
 
   
@@ -46,7 +43,7 @@ export const GifGallery = ({ galleryList }) => {
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
 
     setCurrentItems(galleryList.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(galleryList.length / itemPerPage));
+    setPageCount(Math.ceil(totalCount / itemPerPage));
 
     // checking for resize event also
     window.addEventListener('resize', handleResize);
@@ -55,7 +52,7 @@ export const GifGallery = ({ galleryList }) => {
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemPerPage) % galleryList.length;
+    const newOffset = (event.selected * itemPerPage) % totalCount;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
@@ -64,6 +61,7 @@ export const GifGallery = ({ galleryList }) => {
 
   return (
     <div className="col-12">
+        {totalCount > 0 ? <> 
         <Items currentItems={currentItems} />
         <ReactPaginate
         className="pagination"
@@ -76,7 +74,8 @@ export const GifGallery = ({ galleryList }) => {
             renderOnZeroPageCount={null}
             activeClassName={'active'}
         />
-        
+        </>
+         : <p textAlign="center"> Not Found</p>}
     </div>
   );
 }

@@ -5,7 +5,12 @@ export const SearchBar = (props) => {
 
     const handleChange = (e) => {
         setSearchValue(e.target.value);
-        props.handleChange(e); 
+        props.handleChange(e.target.value); 
+    }
+    const handleSubmit = () => {
+        if(searchValue !== "") {
+            props.handleChange(searchValue); 
+        }
     }
 
     return <div className="col-12 search-container">
@@ -14,6 +19,6 @@ export const SearchBar = (props) => {
         value={searchValue} 
         placeholder="Search by Article name or Keywords..."
         onChange={handleChange}/>
-        <button className="search-button">Search</button>
+        <button className="search-button" onClick={handleSubmit}>Search</button>
     </div>
 }
