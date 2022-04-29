@@ -8,7 +8,7 @@ function Items({ currentItems }) {
       {currentItems &&
         currentItems.map((item) => (
           <img key={item.url}
-          className="col-10 col-md-3"
+          className="col-6 col-md-4"
            src={item.images["preview_gif"].url}
            alt={item.embed_url}/>
           
@@ -25,14 +25,32 @@ export const GifGallery = ({ galleryList }) => {
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
 
-  let itemPerPage = 3;
+  
+  //choose the screen size 
+  const handleResize = () => {
+    if (window.innerWidth < 720) {
+      setItemPerPage(4)
+    } else {
+      setItemPerPage(3)
+    }
+  }
+
+  const [itemPerPage, setItemPerPage] = useState(3);
 
   useEffect(() => {
-    // Fetch items from another resources.
+    // first checking screen size
+    handleResize();
+
     const endOffset = itemOffset + itemPerPage;
+
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+
     setCurrentItems(galleryList.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(galleryList.length / itemPerPage));
+
+    // checking for resize event also
+    window.addEventListener('resize', handleResize);
+
   }, [itemOffset, itemPerPage, galleryList]);
 
   // Invoke when user click to request another page.
@@ -50,12 +68,13 @@ export const GifGallery = ({ galleryList }) => {
         <ReactPaginate
         className="pagination"
             breakLabel="..."
-            nextLabel="next"
+            nextLabel="Next"
             onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
+            pageRangeDisplayed={4}
             pageCount={pageCount}
-            previousLabel="previous"
+            previousLabel="Previous"
             renderOnZeroPageCount={null}
+            activeClassName={'active'}
         />
         
     </div>

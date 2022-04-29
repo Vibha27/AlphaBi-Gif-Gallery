@@ -29,8 +29,10 @@ export const MainComponent = () => {
         console.log(e.target.value)
         apiCall(e.target.value);
     }
-    return <div className="row">
-        <SearchBar handleChange={handleChange} />
-        <GifGallery galleryList={searchResults} />
+    return <div className="container mt-2 pt-5">
+        <div className="row search-gallery-container">
+            <SearchBar handleChange={handleChange} />
+            <GifGallery galleryList={searchResults} />
+        </div>
     </div>
 }

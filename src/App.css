@@ -1,7 +1,10 @@
-.App {
-  text-align: center;
+body {
+  background-color: rgb(233, 227, 227);
+  
 }
-
+.App {
+  overflow-x: hidden;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -11,17 +14,6 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -37,42 +29,102 @@
   }
 }
 
-/* gallery view */
-.gallery-view img{
-  /* max-width: 500px; */
-  height: 250px;
-  padding: 5px;
-  border-radius: 15px;
+/* search text box */
+.search-container {
+  padding: 10px;
+}
+.search-box {
+  background-color:  rgb(241, 235, 235);
+  outline: none;
+  height: 50px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 0;
+  padding: 8px;
+}
+.search-button {
+  /* position: absolute;
+  right: 4px;
+  top: 4px; */
+  background-color: black;
+  border-radius: 10px;
+  border: 0;
+  color: #FFF;
+  width: auto;
+  height: 50px;
+  outline: 0;
+  margin-left: 5px;
+  padding: 5px 15px;
 }
 
+
+/* main container style */
+.search-gallery-container {
+  overflow-x: hidden;
+  background-color: white;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* gallery view */
+.gallery-view img{
+  height: 300px;
+  padding: 5px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+@media (max-width: 719px) {
+  .gallery-view img{
+    height: 250px;
+  }  
+}
+.icon {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
 /* Pagination active  */
 .paginate-div {
   overflow-x: hidden;
 }
 .pagination {
-  margin: 20px auto;
+  margin: 70px auto;
   display: flex;
   list-style: none;
   align-items: center;
   justify-content: center;
+  
 }
 .pagination > li:first-child > a,
 .pagination > li:first-child > span,
 .pagination > li:last-child > a,
 .pagination > li:last-child > span {
-  border-radius: 50px;
-  background-color: #18d26e;
-  color: #fff;
+  /* border-radius: 50px;
+  background-color: #18d26e; */
+  color:black;
   padding: 15px 18px;
+  text-decoration: none;
 }
-.pagination > .active > a {
-  /* background-color: #47ccde ; */
-  /* border-color: #47ccde ; */
-  border-bottom: 2px solid #18d26e;
+.pagination >.active > a {
+  /* background-color: #47ccde ;
+  border-color: #47ccde ; */
+  border-bottom: 2px solid #b31111;
+  background-color: #f5c7c7;
 }
 
 .pagination > li > a {
   /* margin-left:-1px; */
   cursor: pointer;
-  margin: 5px;
+  /* margin: 2px; */
+  padding: 5px;
 }
+
