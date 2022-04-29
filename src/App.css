@@ -70,11 +70,17 @@ body {
 }
 
 /* gallery view */
+/* .gallery-view {
+  display: flex;
+  flex-direction: row;
+} */
+
 .gallery-view img{
   height: 300px;
-  padding: 5px;
+  padding: 3px;
   border-radius: 15px;
   margin-top: 20px;
+  /* max-width: 370px; */
 }
 @media (max-width: 719px) {
   .gallery-view img{

@@ -6,12 +6,12 @@ function Items({ currentItems }) {
   return (
     <div className="gallery-view">
       {currentItems &&
-        currentItems.map((item) => (
+        currentItems.map((item) => (<>
           <img key={item.url}
-          className="col-6 col-md-4"
+          className="col-6 col-md-3"
            src={item.images["preview_gif"].url}
            alt={item.embed_url}/>
-          
+          </>
         ))}
     </div>
   );
@@ -43,7 +43,7 @@ export const GifGallery = ({ galleryList, totalCount }) => {
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
 
     setCurrentItems(galleryList.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(totalCount / itemPerPage));
+    setPageCount(Math.ceil(galleryList.length / itemPerPage));
 
     // checking for resize event also
     window.addEventListener('resize', handleResize);
@@ -60,7 +60,7 @@ export const GifGallery = ({ galleryList, totalCount }) => {
   };
 
   return (
-    <div className="col-12">
+    <div className="col-12 col-md-12">
         {totalCount > 0 ? <> 
         <Items currentItems={currentItems} />
         <ReactPaginate
@@ -75,7 +75,7 @@ export const GifGallery = ({ galleryList, totalCount }) => {
             activeClassName={'active'}
         />
         </>
-         : <p textAlign="center"> Not Found</p>}
+         : <p textAlign="center">Not Found</p>}
     </div>
   );
 }
